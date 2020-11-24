@@ -1,25 +1,22 @@
 require('dotenv').config();
-
 const { Client } = require('discord.js');
 const client = new Client();
+
 const PREFIX = '!';
 
 client.login(process.env.BOT_TOKEN);
 
-// console.log("hehslkdfksd");
-
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+  console.log(`Bot: ${client.user.tag}!`);
 });
 
 client.on('message', (msg) => {
-  if (msg.author.bot) return;
-  if (!msg.content.startsWith(PREFIX)) return;
+  if (msg.author.bot || !msg.content.startsWith(PREFIX)) return;
 
   const [commandName, ...args] = msg.content.trim().substring(PREFIX.length).split(/\s+/);
 
-  console.log(commandName);
-  console.log(args);
+  // console.log(commandName);
+  // console.log(args);
 
   if (commandName === 'kick') {
     if (args.length === 0) return msg.reply('Please provide ID');
@@ -28,8 +25,12 @@ client.on('message', (msg) => {
 
     if (member) member.kick();
     msg.channel.send('Bye felicia');
+    // implement kick from server
   } else if (commandName === 'ban') {
     msg.channel.send('banned');
+    // implement ban from server
+  } else {
+    // fall back for no command found
   }
 
   // console.log(`[${msg.author.tag}]: ${msg.content}`);
