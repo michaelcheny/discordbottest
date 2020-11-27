@@ -22,20 +22,23 @@ client.on('message', (msg) => {
     if (!msg.member.hasPermission('KICK_MEMBERS'))
       return message.reply('You do not have permissions to use that command.');
     if (args.length === 0) return msg.reply('Please provide ID');
+
     const member = msg.guild.members.cache.get(args[0]);
-    console.log(msg.guild.members.cache.get(args[0]));
 
     if (member) {
       member
-        .kick()
+        .kick('misbehaving')
         .then((member) => msg.channel.send(`Bye ${member}.`))
         .catch((err) => message.channel.send('This member is an admin. No can do.'));
-    } else if (command === 'ban') {
-      msg.channel.send('banned');
-      // implement ban from server
     } else {
-      // fall back for no command found
+      msg.channel.send('That member was not found.');
     }
+  } else if (command === 'ban') {
+    if (!msg.member.hasPermission('BAN_MEMBERS'))
+      return msg.reply('You do not have permissions to use that command.');
+    if (args.length === 0) return msg.reply('Please provide ID');
+
+    msg.guild.members.ban(args[0]).catch((err) => console.log(err));
   }
 
   // console.log(`[${msg.author.tag}]: ${msg.content}`);

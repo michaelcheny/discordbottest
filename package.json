@@ -8,7 +8,10 @@
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku",
+    "discord.js"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
