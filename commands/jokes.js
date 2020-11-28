@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 module.exports = {
-  name: 'telljoke',
+  name: 'joke',
   description: 'Returns a joke based on a category.',
   execute(message, args) {
     randomJoke(args).then((msg) => message.channel.send('```' + msg + '```'));
@@ -28,7 +28,7 @@ async function randomJoke(category = 'Any') {
       return error.message;
     }
   } else {
-    return `Try "!telljoke [category]" \nAvailable categories: any, dark, miscellaneous, and programming.`;
+    return `Try "!joke [category]" \nAvailable categories: any, christmas, dark, miscellaneous, programming, pun, and spooky.`;
   }
 }
 
