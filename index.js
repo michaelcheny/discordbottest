@@ -29,11 +29,7 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('message', (msg) => {
-  console.log(msg);
-  console.log('1');
-
   if (!msg.content.startsWith(PREFIX) || msg.author.bot) return;
-  console.log('2');
   processCommand(msg);
 
   // if (msg.author.bot || !msg.content.startsWith(PREFIX)) return;
@@ -71,9 +67,6 @@ client.on('message', (msg) => {
 
 // processes the requested command
 function processCommand(message) {
-  // const args = message.content.slice(process.env.PREFIX.length).split(/ +/);
-  // const commandName = args.shift().toLowerCase();
-  console.log('3');
   const [commandName, ...args] = message.content
     .trim()
     .substring(PREFIX.length)
@@ -83,8 +76,6 @@ function processCommand(message) {
     return message.reply(
       'there was an error trying to execute that command! Try `!commands`'
     );
-
-  // console.log('helllo');
 
   const command = client.commands.get(commandName);
 
